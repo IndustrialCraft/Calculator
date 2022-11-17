@@ -1,2 +1,0 @@
-/usr/bin/ar qc libMathSolver.a  CMakeFiles/MathSolver.dir/Fraction.cpp.o CMakeFiles/MathSolver.dir/Term.cpp.o CMakeFiles/MathSolver.dir/Variable.cpp.o CMakeFiles/MathSolver.dir/Expression.cpp.o CMakeFiles/MathSolver.dir/ExpressionPair.cpp.o CMakeFiles/MathSolver.dir/ExpressionReader.cpp.o CMakeFiles/MathSolver.dir/EquationSystem.cpp.o
-/usr/bin/ranlib libMathSolver.a
