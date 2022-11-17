@@ -1,0 +1,6 @@
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/CMakeFiles/rebuild_cache.dir
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/CMakeFiles/edit_cache.dir
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/CMakeFiles/Calculator.dir
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/MathSolver/CMakeFiles/rebuild_cache.dir
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/MathSolver/CMakeFiles/edit_cache.dir
+/home/mmm/Plocha/IndustrialCraft/Calculator/build/MathSolver/CMakeFiles/MathSolver.dir

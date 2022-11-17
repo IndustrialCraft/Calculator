@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.13.4)
+project (Calculator)
+add_executable(Calculator main.cpp)
+add_subdirectory (MathSolver)
+target_link_libraries(Calculator MathSolver)
+set_property(TARGET Calculator PROPERTY CXX_STANDARD 20)
