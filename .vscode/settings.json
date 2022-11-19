@@ -37,6 +37,7 @@
         "utility": "cpp",
         "bit": "cpp",
         "functional": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "deque": "cpp"
     }
 }

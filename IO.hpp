@@ -68,5 +68,5 @@ public:
     virtual void flushDisplay() = 0;
     virtual EInput getInput() = 0;
 public:
-    char decodeInput(EInput input);
+    static char decodeInput(EInput input);
 };

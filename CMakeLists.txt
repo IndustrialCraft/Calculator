@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13.4)
 project (Calculator)
 find_package(Curses REQUIRED)
-add_executable(Calculator main.cpp IO.cpp KeyboardIO.cpp Menu.cpp MenuSelector.cpp MainMenu.cpp BasicCalculatorMenu.cpp)
+add_executable(Calculator main.cpp IO.cpp KeyboardIO.cpp Menu.cpp MenuSelector.cpp MainMenu.cpp BasicCalculatorMenu.cpp TextField.cpp)
 add_subdirectory (MathSolver)
 target_link_libraries(Calculator MathSolver ${CURSES_LIBRARIES})
 target_include_directories(Calculator PUBLIC ${CURSES_INCLUDE_DIR})
