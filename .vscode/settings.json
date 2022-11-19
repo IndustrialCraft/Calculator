@@ -38,6 +38,8 @@
         "bit": "cpp",
         "functional": "cpp",
         "memory": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp"
     }
 }

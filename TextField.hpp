@@ -12,6 +12,7 @@ public:
     TextField(std::string text);
     ~TextField();
 public:
+    void setText(std::string text, bool resetCursor);
     int getCursor();
     std::string getText();
     void draw(IO& io, int line);

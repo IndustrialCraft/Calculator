@@ -194,7 +194,6 @@ void KeyboardIO::setChar(int x, int y, char ch) {
 }
 void KeyboardIO::flushDisplay() {
     curs_set(m_isCursorVisible);
-    move(m_cursor.second, m_cursor.first);
     for (int y = 0; y < 4; y++) {
         move(y, 0);
         for (int x = 0; x < 20; x++) {
@@ -202,6 +201,7 @@ void KeyboardIO::flushDisplay() {
         }
     }
     clearScreen();
+    move(m_cursor.second, m_cursor.first);
     refresh();
 }
 IO::EInput KeyboardIO::getInput() {
