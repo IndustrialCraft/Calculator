@@ -7,6 +7,7 @@ class TextField {
 private:
     std::string m_text;
     int m_cursor;
+    bool m_canEdit;
 public:
     TextField() : TextField("") {}
     TextField(std::string text);
@@ -17,4 +18,5 @@ public:
     std::string getText();
     void draw(IO& io, int line);
     void input(IO::EInput input);
+    void setCanEdit(bool canEdit);
 };

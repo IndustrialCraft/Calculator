@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-TextField::TextField(std::string text) : m_text(text), m_cursor(0) {}
+TextField::TextField(std::string text) : m_text(text), m_cursor(0), m_canEdit(true) {}
 
 TextField::~TextField() {}
 
@@ -22,6 +22,8 @@ void TextField::setText(std::string text, bool resetCursor) {
 }
 void TextField::draw(IO& io, int line) {
     int startPos = std::max(((m_cursor)-10), 0);
+    if (m_text.size() > 19 && startPos + 19 > m_text.size())
+        startPos = std::min(startPos, (int)m_text.size() - 19);
     io.writeString(m_text, -startPos, line);
     io.setCursor(m_cursor - startPos, line);
 }
@@ -36,16 +38,22 @@ void TextField::input(IO::EInput input) {
         m_cursor = m_text.size();
     if (m_cursor > m_text.size())
         m_cursor = 0;
-    if (input == IO::EInput::back) {
-        if (m_cursor > 0) {
-            m_text.erase(m_cursor - 1, 1);
-            m_cursor--;
+    if (m_canEdit) {
+        if (input == IO::EInput::del) {
+            if (m_cursor > 0) {
+                m_text.erase(m_cursor - 1, 1);
+                m_cursor--;
+            }
+            return;
         }
-        return;
+        char ch = IO::decodeInput(input);
+        if (ch != 0) {
+            m_text.insert(m_cursor, 1, ch);
+            m_cursor++;
+        }
     }
-    char ch = IO::decodeInput(input);
-    if (ch != 0) {
-        m_text.insert(m_cursor, 1, ch);
-        m_cursor++;
-    }
+}
+
+void TextField::setCanEdit(bool canEdit) {
+    this->m_canEdit = canEdit;
 }

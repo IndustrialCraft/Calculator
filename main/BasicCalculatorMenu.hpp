@@ -7,6 +7,7 @@ private:
     TextField m_textfield;
 public:
     BasicCalculatorMenu();
+    BasicCalculatorMenu(std::string input);
     ~BasicCalculatorMenu();
 public:
     virtual void tick(MenuSelector& menuSelector, IO& io) override;

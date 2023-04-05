@@ -5,7 +5,7 @@
 class Menu {
 public:
     Menu();
-    ~Menu();
+    virtual ~Menu();
 public:
     virtual void tick(MenuSelector& menuSelector, IO& io) = 0;
 };
