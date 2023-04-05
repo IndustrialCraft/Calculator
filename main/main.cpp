@@ -1,6 +1,8 @@
 #include <iostream>
 
-#include "KeyboardIO.hpp"
+#include "ESPIO.hpp"
+#include "ExceptionMenu.hpp"
+#include "HD44780.h"
 #include "MainMenu.hpp"
 #include "MathSolver/EquationSystem.hpp"
 #include "MathSolver/Expression.hpp"
@@ -10,15 +12,27 @@
 #include "MathSolver/Term.hpp"
 #include "Menu.hpp"
 #include "MenuSelector.hpp"
-
-int main() {
-    KeyboardIO io;
+#include "driver/adc.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "sdkconfig.h"
+extern "C" void app_main();
+void app_main() {
+    ESPIO io;
     MenuSelector menuSelector;
     menuSelector.setMenu(new MainMenu());
     while (true) {
+        menuSelector.tick();
         io.tick();
-        menuSelector.getMenu().tick(menuSelector, io);
+        try {
+            menuSelector.getMenu().tick(menuSelector, io);
+        } catch (std::exception& exception) {
+            menuSelector.setMenu(new ExceptionMenu(std::string(exception.what())));
+        }
         io.flushDisplay();
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
     // std::cout << (Fraction(15, 10) - Fraction(2, 1)).toString() << std::endl;
     // std::cout << ((Term(Fraction(15, 10)) * Part('a') * Part('b') * Part('c') * Part('b') / Part('b')) / (Term(Fraction(1, 2)) * Part('c'))).simplify().at(0).toString() << std::endl;
@@ -36,5 +50,4 @@ int main() {
     // std::cout << expr2.simplify().toString() << std::endl;
     // std::cout << expr1.toString() << expr2.toString() << std::endl;
     // std::cout << result.at(Variable('x')).toString(false) << ";" << result.at(Variable('y')).toString(false) << std::endl;
-    return 0;
 }

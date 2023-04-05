@@ -3,6 +3,9 @@
 #include <iostream>
 
 #include "ExpressionPair.hpp"
+#include "HistoryManager.hpp"
+#include "HistoryMenu.hpp"
+#include "MainMenu.hpp"
 #include "MathSolver/ExpressionReader.hpp"
 #include "MathSolver/Term.hpp"
 
@@ -40,16 +43,22 @@ char operatorToChar(ExpressionPair::EOperator op) {
 }
 
 BasicCalculatorMenu::BasicCalculatorMenu() {}
+BasicCalculatorMenu::BasicCalculatorMenu(std::string input) : m_textfield(input) {}
 
 BasicCalculatorMenu::~BasicCalculatorMenu() {}
 
 void BasicCalculatorMenu::tick(MenuSelector& menuSelector, IO& io) {
     io.setCursorVisibility(true);
     IO::EInput input = io.getInput();
+    if (input == IO::EInput::back)
+        menuSelector.setMenu(new MainMenu());
     if (input != IO::EInput::none) {
         m_textfield.input(input);
     }
+    if (input == IO::EInput::history)
+        menuSelector.setMenu(new HistoryMenu());
     if (input == IO::EInput::exec) {
+        HistoryManager::getInstance().addHistory(m_textfield.getText());
         char found = 0;
         if (m_textfield.getText().find('=') != std::string::npos)
             found = '=';

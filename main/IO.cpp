@@ -28,6 +28,26 @@ char IO::decodeInput(IO::EInput input) {
             return '8';
         case EInput::n9:
             return '9';
+        case EInput::p0:
+            return 0x08;
+        case EInput::p1:
+            return 0x09;
+        case EInput::p2:
+            return 0x1e;
+        case EInput::p3:
+            return 0x1f;
+        case EInput::p4:
+            return 0x0a;
+        case EInput::p5:
+            return 0x0b;
+        case EInput::p6:
+            return 0x0c;
+        case EInput::p7:
+            return 0x0d;
+        case EInput::p8:
+            return 0x0e;
+        case EInput::p9:
+            return 0x0f;
         case EInput::ka:
             return 'a';
         case EInput::kb:
@@ -94,13 +114,15 @@ char IO::decodeInput(IO::EInput input) {
             return '*';
         case EInput::divide:
             return '/';
+        case EInput::comma:
+            return ',';
         default:
             return 0;
     }
 }
 
 void IO::writeString(std::string text, int x, int y) {
-    if (y < 0 || y >= 3)
+    if (y < 0 || y > 3)
         throw std::range_error("y out of bounds");
     for (int i = 0; i < text.size(); i++) {
         int xPos = x + i;
