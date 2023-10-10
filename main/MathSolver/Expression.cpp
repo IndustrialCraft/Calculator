@@ -111,7 +111,7 @@ Term Expression::getCommonVarsAndCount() const {
         if (gcd.isZero())
             gcd = term.getAmount();
         else
-            gcd = gcd.gcd(term.getAmount());
+            gcd = gcd.gcd_fraction(term.getAmount());
     }
     // todo
     return Term(Fraction(1, 1));

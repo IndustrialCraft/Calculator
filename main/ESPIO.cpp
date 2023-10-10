@@ -211,6 +211,8 @@ void ESPIO::tick() {
                 m_input = IO::EInput::comma;
             else if (readval & 32768)
                 m_input = IO::EInput::history;
+            else if (readval & 4)
+                m_input = IO::EInput::bang;
             else if (readval & 8) {
                 m_inputMode = ESPIO::EInputMode::power;
                 goto skip;

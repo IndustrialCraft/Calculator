@@ -29,9 +29,13 @@ std::pair<Expression, int> ExpressionReader::parseExpr(std::string input, int of
                 num = num + input.at(i);
             }
             i--;
-            int number = std::stoi(num);
+            Fraction number = Fraction(std::stoi(num),1);
+            if(input.at(i+1) == '!'){
+                number = number.factorial();
+                i++;
+            }
             auto times = ExpressionReader::tryParseUpperNum(input, i + 1);
-            for (int i = 0; i < times.first; i++) currentTerm = isInverse ? (currentTerm / Fraction(number, 1)) : (currentTerm * Fraction(number, 1));
+            for (int i = 0; i < times.first; i++) currentTerm = isInverse ? (currentTerm / number) : (currentTerm * number);
             i = times.second - 1;
             isInverse = false;
             first = false;

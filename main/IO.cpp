@@ -116,6 +116,8 @@ char IO::decodeInput(IO::EInput input) {
             return '/';
         case EInput::comma:
             return ',';
+        case EInput::bang:
+            return '!';
         default:
             return 0;
     }

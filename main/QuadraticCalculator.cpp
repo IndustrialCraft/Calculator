@@ -47,7 +47,7 @@ void QuadraticCalculator::tick(MenuSelector& menuSelector, IO& io) {
     IO::EInput input = io.getInput();
     if (input == IO::EInput::back)
         menuSelector.setMenu(new MainMenu());
-    if (input == IO::EInput::exec) {
+    else if (input == IO::EInput::exec) {
         std::vector<std::string> split = splitString(m_textfield.getText(), ',');
         if (split.size() != 3)
             return;
@@ -62,11 +62,8 @@ void QuadraticCalculator::tick(MenuSelector& menuSelector, IO& io) {
             m_textfield.setText(std::string("K=") + ((char)0xAE), true);
         } else {
             if (d.getDenominator() == 1) {
-                float dSqrt = sqrt(d.getNumberator());
-                if (dSqrt == ((int)dSqrt)) {
-                    m_textfield.setText("K={" + (((Fraction(-1, 1) * b) - Fraction(dSqrt, 1)) / (Fraction(2, 1) * a)).toString(false) + "," + (((Fraction(-1, 1) * b) + Fraction(dSqrt, 1)) / (Fraction(2, 1) * a)).toString(false) + "}", true);
-                } else {
-                }
+                BigInt dSqrt = sqrt(d.getNumberator());
+                m_textfield.setText("K={" + (((Fraction(-1, 1) * b) - Fraction(dSqrt, 1)) / (Fraction(2, 1) * a)).toString(false) + "," + (((Fraction(-1, 1) * b) + Fraction(dSqrt, 1)) / (Fraction(2, 1) * a)).toString(false) + "}", true);
             }
         }
     } else {

@@ -4,6 +4,8 @@
 
 #include "Term.hpp"
 
+#include <algorithm>
+
 void EquationSystem::addEquation(const ExpressionPair& equation) {
     if (equation.getOperator() != ExpressionPair::EOperator::EQUALS)
         throw std::runtime_error("only equations can be used in equation system");

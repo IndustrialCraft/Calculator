@@ -69,6 +69,7 @@ public:
         up,
         down,
         comma,
+        bang
     };
 public:
     IO();
